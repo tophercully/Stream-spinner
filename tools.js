@@ -101,3 +101,16 @@ function angBetween(x1, y1, x2, y2) {
 }
 
 ////////////////////////////////////////
+
+function result(x, y, num) {
+  thisString = shuffResults[num]
+  p.text(thisString, x, y)
+}
+
+function spin(numResults) {
+  cellH = (h-(marg*2))/numResults
+  for(let i = 0; i < numResults; i++) {
+    here = createVector(w/2, marg+(cellH*i)+(cellH/2))
+    result(here.x, here.y, i)
+  }
+}

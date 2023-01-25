@@ -55,7 +55,7 @@ void main() {
   st.y = 1.0 - st.y;
 
   //form noise
-  st.xy += (random(st.xy)*0.001)-0.0005;
+  // st.xy += (random(st.xy)*0.001)-0.0005;
   float warp = map(noise(seed+st.xy*5.0), 0.0, 1.0, -0.005, 0.005);
   //st.xy += warp;
 
@@ -76,5 +76,5 @@ void main() {
   }
 
 
-  gl_FragColor = vec4(color+noiseGray, 1.0);
+  gl_FragColor = vec4(color, 1.0);
 }

@@ -1,10 +1,11 @@
 w= 1600
 h = 2000
-marg = w*0.025
+marg = w*0.05
 
 let shade;
 function preload() {
   shade = loadShader("shader.vert", "shader.frag");
+  montreal = loadFont('neueMontreal.otf')
 }
 url = new URL(window.location.href)
 urlParams = new URLSearchParams(url.search)
@@ -17,8 +18,37 @@ pxSize = url.searchParams.get('size')
 
 
 //declarations
+results = [
+  'Scribbly Line', 
+  "Color Gradient", 
+  "LUT", 
+  "Polar Noise", 
+  "Grid", 
+  "Sine Flower", 
+  "Circle of Circles", 
+  "Glitch", 
+  "SDF", 
+  "Black and White", 
+  "Shadows", 
+  "Symmetry", 
+  "Subdivision", 
+  "Curve Only", 
+  "No Loops", 
+  "Pack Shapes", 
+  "3 Colors", 
+  "Text/Type", 
+  "Isometric", 
+  "Animated", 
+  "Connect 10 Dots", 
+  "One Color", 
+  "Color I Usually Avoid", 
+  "Single Line", 
+  "Concentric"
+]
 
+shuffResults = shuff(results)
 //parameters
+numResults = randomInt(2, 5)
 
 function setup() {
   var isMobile = false; //initiate as false
@@ -41,17 +71,30 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
   angleMode(DEGREES)
   p.angleMode(DEGREES)
   c.angleMode(DEGREES)
+  // frameRate(3)
   noLoop()
-  p.noLoop()
-  c.noLoop()
+
+  // p.noLoop()
+  // c.noLoop()
 }
 
 function draw() {
-  background(bgc)
-  p.background(bgc)
+  if(frameCount < 100) {
+    p.clear
+    background(bgc)
+    p.background(bgc)
 
-  //Sketch
-
+    //Sketch
+    p.textAlign(CENTER, CENTER)
+    p.textSize(100)
+    p.fill(frameCol)
+    p.noStroke()
+    p.textFont(montreal)
+    // result(w/2, h/2)
+    spin(numResults)
+    console.log('looped')
+  }
+  
 
   //Post processing
    copy(p, 0, 0, w, h, 0, 0, w, h)
@@ -69,5 +112,5 @@ function draw() {
 
    rect(0, 0, w, h)
 
-   fxpreview()
+  //  fxpreview()
 }
